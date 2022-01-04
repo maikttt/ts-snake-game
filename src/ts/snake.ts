@@ -1,13 +1,11 @@
-import {
-  Pixel, Direction, ISnake
-} from './interfaces';
+import { IPixel, IDirection, ISnake } from './interfaces';
 
 export class Snake implements ISnake {
-  public pixels: Pixel[];
-  public direction: Direction;
+  public pixels: IPixel[];
+  public direction: IDirection;
   public maxLength: number = 0;
 
-  constructor(pixels: Pixel[], direction: Direction) {
+  constructor(pixels: IPixel[], direction: IDirection) {
     this.pixels = pixels;
     this.direction = direction;
   }
@@ -21,19 +19,19 @@ export class Snake implements ISnake {
     };
   }
 
-  public changeDirection(direction: Direction) {
+  public changeDirection(direction: IDirection) {
     if (Math.abs(direction.dx) == Math.abs(this.direction.dx) && Math.abs(direction.dy) == Math.abs(this.direction.dy)) {
       return;
     }
     this.direction = direction;
   }
 
-  public goTo(pixel: Pixel) {
+  public goTo(pixel: IPixel) {
     this._moveHeadTo(pixel);
     this._moveTail();
   }
 
-  public eatFrom(pixel: Pixel) {
+  public eatFrom(pixel: IPixel) {
     if (0 < this.maxLength && this.maxLength <= this.pixels.length) {
       this.goTo(pixel);
     } else {
@@ -41,7 +39,7 @@ export class Snake implements ISnake {
     }
   }
 
-  private _moveHeadTo(pixel: Pixel) {
+  private _moveHeadTo(pixel: IPixel) {
     this.pixels.unshift(pixel);
   }
 

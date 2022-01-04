@@ -1,4 +1,4 @@
-import { IFoodFactory, Food, Pixel, ISnakeFactory, Direction, ISnake } from "./interfaces";
+import { IFoodFactory, IFood, IPixel, ISnakeFactory, IDirection, ISnake } from "./interfaces";
 import { Snake } from "./snake";
 
 function random(from: number, to: number) {
@@ -18,8 +18,8 @@ export class FoodFactory implements IFoodFactory {
     this.names = foodNames;
   }
 
-  public getFood(): Food {
-    const pixel: Pixel = {
+  public getFood(): IFood {
+    const pixel: IPixel = {
       x: random(0, this.widthLimit),
       y: random(0, this.heightLimit),
     };
@@ -36,11 +36,11 @@ export class FoodFactory implements IFoodFactory {
 }
 
 export class SnakeFactory implements ISnakeFactory {
-  private snakePixels: Pixel[];
-  private direction: Direction;
+  private snakePixels: IPixel[];
+  private direction: IDirection;
   private maxLength: number;
 
-  constructor(snakePixel: Pixel[], direction: Direction, maxLength: number) {
+  constructor(snakePixel: IPixel[], direction: IDirection, maxLength: number) {
     this.snakePixels = snakePixel;
     this.direction = direction;
     this.maxLength = maxLength;

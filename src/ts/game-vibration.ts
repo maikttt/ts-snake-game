@@ -1,10 +1,10 @@
-import { IGameVibration, VibrationPatterns } from './interfaces';
+import { IGameVibration, IVibrationPatterns } from './interfaces';
 
 export class GameVibration implements IGameVibration {
-  private patterns: VibrationPatterns;
+  private patterns: IVibrationPatterns;
   private hasSound: boolean = true;
 
-  constructor(patterns: VibrationPatterns) {
+  constructor(patterns: IVibrationPatterns) {
     this.patterns = patterns;
   }
 
@@ -26,7 +26,7 @@ export class GameVibration implements IGameVibration {
     this._vibrate(this.patterns.gameOver);
   }
 
-  setPatterns(patterns: VibrationPatterns) {
+  setPatterns(patterns: IVibrationPatterns) {
     this.patterns = patterns;
   }
 

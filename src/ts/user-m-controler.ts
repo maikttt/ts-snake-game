@@ -1,9 +1,5 @@
 import { isMobile } from 'is-mobile';
-
-interface MovePosition {
-  x: number;
-  y: number;
-}
+import { IMovePosition } from './interfaces';
 
 function getFirstChild(parent: Element, c: string): Element {
   const children: HTMLCollection = parent.children;
@@ -17,7 +13,7 @@ function getFirstChild(parent: Element, c: string): Element {
   return null;
 }
 
-function posOffset(element: any): MovePosition {
+function posOffset(element: any): IMovePosition {
   const offset = {
     x: element.offsetLeft,
     y: element.offsetTop,
@@ -31,7 +27,7 @@ function posOffset(element: any): MovePosition {
   return offset;
 }
 
-function getMouseEventO(event: any): MovePosition {
+function getMouseEventO(event: any): IMovePosition {
   if (event instanceof MouseEvent) {
     return {
       x: event.clientX,
@@ -53,9 +49,9 @@ function getMouseEventO(event: any): MovePosition {
   };
 }
 
-function setControlPosition(container: any, element: any, event: any): MovePosition {
+function setControlPosition(container: any, element: any, event: any): IMovePosition {
   const cntOffset = posOffset(container);
-  const eventO: MovePosition = getMouseEventO(event); // touchesParent.touches && touchesParent.touches[0] || {clientX: cntOffset.x, clientY: cntOffset.y};
+  const eventO: IMovePosition = getMouseEventO(event); // touchesParent.touches && touchesParent.touches[0] || {clientX: cntOffset.x, clientY: cntOffset.y};
   const x = (eventO.x - cntOffset.x) - element.offsetWidth  / 2;
   const y = (eventO.y - cntOffset.y) - element.offsetHeight / 2;
   element.style.left = x;
@@ -63,7 +59,7 @@ function setControlPosition(container: any, element: any, event: any): MovePosit
   return {x, y};
 }
 
-function getDir(pos: MovePosition, element: any): string {
+function getDir(pos: IMovePosition, element: any): string {
   let x = pos.x - (element && element.offsetWidth  / 2 || 0);
   let y = pos.y - (element && element.offsetHeight / 2 || 0);
   const alpha = Math.atan2(y, x);

@@ -1,17 +1,9 @@
 import {
-  Direction, Food, IDisplay, ISnakeFactory, IFoodFactory, ISnake, IGameVibration
+  IDirection, IFood, IDisplay, ISnakeFactory, IFoodFactory, ISnake, IGameVibration, ISettings
 } from "./interfaces";
 
-interface Settings {
-  colors: {
-    snakeHead: string;
-    snake: string;
-    food: string;
-  };
-  displayHasWall: boolean;
-}
 
-const DIRECTIONS: {[d: string]: Direction} = {
+const DIRECTIONS: {[d: string]: IDirection} = {
   left:   {dx: -1, dy: 0},
   right:  {dx: 1, dy: 0},
   top:    {dx: 0, dy: -1},
@@ -23,7 +15,7 @@ export class Game {
   private snake: ISnake;
   private snakeFactory: ISnakeFactory;
   private foodFactory: IFoodFactory;
-  private food: Food[];
+  private food: IFood[];
   private vibration: IGameVibration;
 
   private _score: number = 0;
@@ -31,13 +23,13 @@ export class Game {
   private _runningTimer: any = false;
   private _delay: number = 100;
   private _finished: boolean = false;
-  private _requestDirection: Direction[] = [];
+  private _requestDirection: IDirection[] = [];
 
-  private _settings: Settings;
+  private _settings: ISettings;
 
   private events: {[name: string]: Function[]} = {};
 
-  constructor(display: IDisplay, snakeFactory: ISnakeFactory, foodFactory: IFoodFactory, vibration: IGameVibration, settings: Settings) {
+  constructor(display: IDisplay, snakeFactory: ISnakeFactory, foodFactory: IFoodFactory, vibration: IGameVibration, settings: ISettings) {
     this.display = display;
     this.snakeFactory = snakeFactory;
     this.foodFactory = foodFactory;
@@ -186,7 +178,7 @@ export class Game {
     }
     const nextPixel = this.snake.nextPixel();
     const { snake, food } = this;
-    let foodToEat: Food;
+    let foodToEat: IFood;
     for (let i = 0; i < food.length; i++) {
       if (nextPixel.x == food[i].pixel.x && nextPixel.y == food[i].pixel.y) {
         foodToEat = food[i];

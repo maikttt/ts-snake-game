@@ -1,11 +1,6 @@
-import { IDisplay, ISnake, IDisplayImages, Food, Pixel } from './interfaces';
+import { IDisplay, ISnake, IDisplayImages, IFood, IPixel, IDisplayColors } from './interfaces';
 
-interface DisplayColors {
-  display: string;
-  emptyPixel: string;
-}
-
-const DEFAULT_DISPLAY_COLORS: DisplayColors = {
+const DEFAULT_DISPLAY_COLORS: IDisplayColors = {
   display: '#aad751',
   emptyPixel: '#4a752c',
 };
@@ -14,11 +9,11 @@ export class Display implements IDisplay {
   private context: CanvasRenderingContext2D;
   private pixelSize: number;
   private images: IDisplayImages;
-  private colors: DisplayColors;
+  private colors: IDisplayColors;
   private _width: number;
   private _height: number;
 
-  constructor(context: CanvasRenderingContext2D, pixelSize: number, images: IDisplayImages, colors: DisplayColors = DEFAULT_DISPLAY_COLORS) {
+  constructor(context: CanvasRenderingContext2D, pixelSize: number, images: IDisplayImages, colors: IDisplayColors = DEFAULT_DISPLAY_COLORS) {
     this.context = context;
     this.pixelSize = pixelSize;
 
@@ -37,7 +32,7 @@ export class Display implements IDisplay {
     return this._height;
   }
 
-  public drawPixels(color: string, ...pixels: Pixel[]) {
+  public drawPixels(color: string, ...pixels: IPixel[]) {
     pixels.forEach((pixel) => {
       this._drawPixel(color, pixel);
     });
@@ -97,7 +92,7 @@ export class Display implements IDisplay {
     }
   }
 
-  public drawFood(food: Food) {
+  public drawFood(food: IFood) {
     this._drawPixelImg(this.images.food[food.name], food.pixel, 0);
   }
 
@@ -123,7 +118,7 @@ export class Display implements IDisplay {
     }
   }
 
-  private _drawPixelImg(img: HTMLImageElement, pixel: Pixel, angle: number) {
+  private _drawPixelImg(img: HTMLImageElement, pixel: IPixel, angle: number) {
     const { context } = this;
     const x = this.pixelSize * pixel.x;
     const y = this.pixelSize * pixel.y;
@@ -135,7 +130,7 @@ export class Display implements IDisplay {
     context.restore();
   }
 
-  private _drawPixel(color: string, pixel: Pixel): void {
+  private _drawPixel(color: string, pixel: IPixel): void {
     const { context, pixelSize } = this;
     context.beginPath();
     context.rect(

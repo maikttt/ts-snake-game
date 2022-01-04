@@ -4,6 +4,4 @@ export class ModalWindow {
   public constructor(wrapper: HTMLDivElement) {
     this.wrapper = wrapper;
   }
-
-
 }
