@@ -1,12 +1,11 @@
 import { IGameVibration, IVibrationPatterns } from './interfaces';
 
 export class GameVibration implements IGameVibration {
-  private patterns: IVibrationPatterns;
   private hasSound: boolean = true;
 
-  constructor(patterns: IVibrationPatterns) {
-    this.patterns = patterns;
-  }
+  constructor(
+    private patterns: IVibrationPatterns
+  ) {}
 
   _vibrate(pattern: number[]) {
     if (pattern.length && this.hasSound) {

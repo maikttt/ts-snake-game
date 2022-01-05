@@ -1,14 +1,12 @@
 import { IPixel, IDirection, ISnake } from './interfaces';
 
 export class Snake implements ISnake {
-  public pixels: IPixel[];
-  public direction: IDirection;
   public maxLength: number = 0;
 
-  constructor(pixels: IPixel[], direction: IDirection) {
-    this.pixels = pixels;
-    this.direction = direction;
-  }
+  constructor(
+    public pixels: IPixel[],
+    public direction: IDirection
+  ) {}
 
   public nextPixel() {
     const head = this.pixels[0];

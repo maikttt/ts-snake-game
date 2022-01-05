@@ -11,12 +11,8 @@ const DIRECTIONS: {[d: string]: IDirection} = {
 };
 
 export class Game {
-  private display: IDisplay;
   private snake: ISnake;
-  private snakeFactory: ISnakeFactory;
-  private foodFactory: IFoodFactory;
   private food: IFood[];
-  private vibration: IGameVibration;
 
   private _score: number = 0;
   private _bestScore: number = 0;
@@ -25,17 +21,15 @@ export class Game {
   private _finished: boolean = false;
   private _requestDirection: IDirection[] = [];
 
-  private _settings: ISettings;
-
   private events: {[name: string]: Function[]} = {};
 
-  constructor(display: IDisplay, snakeFactory: ISnakeFactory, foodFactory: IFoodFactory, vibration: IGameVibration, settings: ISettings) {
-    this.display = display;
-    this.snakeFactory = snakeFactory;
-    this.foodFactory = foodFactory;
-    this.vibration = vibration;
-    this._settings = settings;
-
+  constructor(
+    private display: IDisplay,
+    private snakeFactory: ISnakeFactory,
+    private foodFactory: IFoodFactory,
+    private vibration: IGameVibration,
+    private _settings: ISettings
+  ) {
     this.reset();
   }
 

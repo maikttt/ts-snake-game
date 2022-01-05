@@ -14,12 +14,11 @@ const VIBRATION_PATTERN = {
 };
 
 class GameModal {
-  private $window: HTMLElement;
   private _isOpened: boolean;
 
-  constructor($window: HTMLElement) {
-    this.$window = $window;
-
+  constructor(
+    private $window: HTMLElement
+  ) {
     const { classList } = this.$window;
     this._isOpened = classList.contains('modal-instructions') ||
       classList.contains('modal-game-over') ||
@@ -61,13 +60,10 @@ class GameModal {
 }
 
 class App {
-  private game: Game;
-  private modal: GameModal;
-
-  constructor(game: Game, modal: GameModal, ) {
-    this.game = game;
-    this.modal = modal;
-  }
+  constructor(
+    private game: Game,
+    private modal: GameModal
+  ) {}
 
   closeModal() {
     const { modal, game } = this;

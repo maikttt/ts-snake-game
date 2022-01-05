@@ -6,22 +6,17 @@ const DEFAULT_DISPLAY_COLORS: IDisplayColors = {
 };
 
 export class Display implements IDisplay {
-  private context: CanvasRenderingContext2D;
-  private pixelSize: number;
-  private images: IDisplayImages;
-  private colors: IDisplayColors;
   private _width: number;
   private _height: number;
 
-  constructor(context: CanvasRenderingContext2D, pixelSize: number, images: IDisplayImages, colors: IDisplayColors = DEFAULT_DISPLAY_COLORS) {
-    this.context = context;
-    this.pixelSize = pixelSize;
-
+  constructor(
+    private context: CanvasRenderingContext2D,
+    private pixelSize: number,
+    private images: IDisplayImages,
+    private colors: IDisplayColors = DEFAULT_DISPLAY_COLORS
+  ) {
     this._width = Math.floor(context.canvas.width / pixelSize);
     this._height = Math.floor(context.canvas.height / pixelSize);
-
-    this.images = images;
-    this.colors = colors;
   }
 
   public width(): number {

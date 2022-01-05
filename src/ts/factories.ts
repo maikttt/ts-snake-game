@@ -6,17 +6,12 @@ function random(from: number, to: number) {
 }
 
 export class FoodFactory implements IFoodFactory {
-  private widthLimit: number;
-  private heightLimit: number;
-  private names: string[];
-  private energy: number[];
-
-  constructor(width: number, height: number, foodNames: string[], foodEnergy: number[]) {
-    this.widthLimit = width;
-    this.heightLimit = height;
-    this.energy = foodEnergy;
-    this.names = foodNames;
-  }
+  constructor(
+    private widthLimit: number,
+    private heightLimit: number,
+    private names: string[],
+    private energy: number[]
+  ) {}
 
   public getFood(): IFood {
     const pixel: IPixel = {
@@ -36,15 +31,11 @@ export class FoodFactory implements IFoodFactory {
 }
 
 export class SnakeFactory implements ISnakeFactory {
-  private snakePixels: IPixel[];
-  private direction: IDirection;
-  private maxLength: number;
-
-  constructor(snakePixel: IPixel[], direction: IDirection, maxLength: number) {
-    this.snakePixels = snakePixel;
-    this.direction = direction;
-    this.maxLength = maxLength;
-  }
+  constructor(
+    private snakePixels: IPixel[],
+    private direction: IDirection,
+    private maxLength: number
+  ) {}
 
   public getSnake(): ISnake {
     const snake = new Snake([...this.snakePixels], this.direction);
