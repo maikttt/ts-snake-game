@@ -31,10 +31,7 @@ class GameModal {
   }
 
   public close() {
-    const { classList } = this.$window;
-    classList.remove('modal-instructions');
-    classList.remove('modal-game-over');
-    classList.remove('modal-resume');
+    this.$window.className = 'game-modal';
     this._isOpened = false;
   }
 
@@ -185,7 +182,7 @@ function initEvents() {
 }
 
 function main() {
-  const $closeModal = document.querySelector('.close-modal');
+  const $closeModal = document.querySelectorAll('.game-modal-btn');
   const $bestScore = document.querySelectorAll('.game-best-score span');
   const $bestScoreWrapper = document.querySelectorAll('.game-best-score');
   const $gameScore = document.querySelectorAll('.game-score span');
@@ -203,19 +200,19 @@ function main() {
     game
     .on('scoreUpdated', function(score: number) {
       const strScore = score.toString();
-      for (let i = 0; i < $gameScore.length; i++) {
-        $gameScore[i].innerHTML = strScore;
-      }
+      $gameScore.forEach((element)=>{
+        element.innerHTML = strScore;
+      });
     })
     .on('bestscoreUpdated', function(score: number) {
       const strScore = score.toString();
-      for (let i = 0; i < $bestScore.length; i++) {
-        $bestScore[i].innerHTML = strScore;
-      }
+      $bestScore.forEach((element)=>{
+        element.innerHTML = strScore;
+      });
       if (score > 0) {
-        for (let i = 0; i < $bestScoreWrapper.length; i++) {
-          $bestScoreWrapper[i].classList.remove('invisible')
-        }
+        $bestScoreWrapper.forEach((element)=>{
+          element.classList.remove('invisible')
+        });
       }
     })
     .on('gameOver', function() {
@@ -223,10 +220,11 @@ function main() {
     })
     ;
 
-    $closeModal.addEventListener('click', function() {
-      app.closeModal();
+    $closeModal.forEach((btn)=>{
+      btn.addEventListener('click', function() {
+        app.closeModal();
+      });
     });
-
     document.addEventListener('keydown', function(event: KeyboardEvent) {
       app.userInput(event.code);
     })

@@ -22,26 +22,34 @@
       <div class="game-modal modal-instructions">
         <div class="game-modal-body">
           <div class="game-instructions">
-            <p>Use <img src="./dist/space.png" alt="Space key" /> to start / stop game.</p>
-            <p>Use
-              <img src="./dist/arrows.png" alt="Arrows" />
-              to control the snake.
-            </p>
+            <div class="game-modal-content">
+              <p>Use <img src="./dist/space.png" alt="Space key" /> to start / stop game.</p>
+              <p>Use
+                <img src="./dist/arrows.png" alt="Arrows" />
+                to control the snake.
+              </p>
+            </div>
+            <div class="game-modal-btn">
+              <span class="b-play">Play</span>
+            </div>
           </div>
           <div class="game-resumed">
-            <p class="text-center">Game stopped...</p>
+            <div class="game-modal-content">
+              <p class="text-center">Game stopped...</p>
+            </div>
+            <div class="game-modal-btn">
+              <span class="b-resume">Resume</span>
+            </div>
           </div>
           <div class="game-over">
-            <p class="text-center">Game over!</p>
-            <p class="text-center game-score">Score: <span>0</span></p>
+            <div class="game-modal-content">
+              <p class="text-center">Game over!</p>
+              <p class="text-center game-score">Score: <span>0</span></p>
+            </div>
+            <div class="game-modal-btn">
+              <span class="b-play-again">Play again</span>
+            </div>
           </div>
-        </div>
-        <div>
-          <span class="close-modal">
-            <span class="b-play">Play</span>
-            <span class="b-play-again">Play again</span>
-            <span class="b-resume">Resume</span>
-          </span>
         </div>
       </div>
     </div>

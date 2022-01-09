@@ -152,6 +152,7 @@ canvas {
 }
 /* -------------------------------------------------------------------------- */
 .game-modal {
+  display: none;
   position: absolute;
   top: 0;
   bottom: 0;
@@ -161,37 +162,20 @@ canvas {
   transition: opacity 0.3s;
 }
 
-.game-modal {
-  display: none;
-}
-
-.game-modal.modal-instructions,
-.game-modal.modal-game-over,
-.game-modal.modal-resume {
-  display: block;
-}
-
-.game-modal-body {
+.game-modal-content {
   padding: 16px;
   background-color: #ffffff;
   width: 300px;
   color: #772bdb;
-  margin: 120px auto 30px;
+  margin: 120px auto 0;
   border-radius: 12px;
   font-size: 18px;
 }
 
-.game-modal-body .game-score {
-  color: #fdc001;
-}
 
-.game-modal-body .game-score span {
-  color: #e7471d;
-}
-
-.close-modal {
+.game-modal-btn {
   display: block;
-  margin: 0 auto;
+  margin: 30px auto 0;
   padding: 16px;
   width: 300px;
   background-color: #15c;
@@ -204,38 +188,25 @@ canvas {
   cursor: pointer;
 }
 
-.close-modal .b-play,
-.close-modal .b-play-again,
-.close-modal .b-resume {
+.game-modal-body .game-score {
+  color: #fdc001;
+}
+
+.game-modal-body .game-score span {
+  color: #e7471d;
+}
+
+.game-modal-body > * {
   display: none;
 }
 
-.modal-instructions .close-modal .b-play {
-  display: inline-block;
-}
-
-.modal-game-over .close-modal .b-play-again {
-  display: inline-block;
-}
-
-.modal-resume .close-modal .b-resume {
-  display: inline-block;
-}
-
-.game-modal-body .game-instructions,
-.game-modal-body .game-over,
-.game-modal-body .game-resumed {
-  display: none;
-}
-
-.modal-instructions .game-modal-body .game-instructions {
-  display: block;
-}
-
-.modal-game-over .game-modal-body .game-over {
-  display: block;
-}
-
+/* modal block */
+.game-modal.modal-instructions,
+.game-modal.modal-game-over,
+.game-modal.modal-resume,
+/* modal element */
+.modal-instructions .game-modal-body .game-instructions,
+.modal-game-over .game-modal-body .game-over,
 .modal-resume .game-modal-body .game-resumed {
   display: block;
 }
